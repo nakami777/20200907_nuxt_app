@@ -1,0 +1,22 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": {
+    "public": "static",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "ssr"
+      }
+    ],
+    "//": "コメント: publicで設定されたフォルダを見に行き、対象ファイルがないとssr functionが実行される設定。staticフォルダにindex.htmlが保存されているとrewritesが発生しないので注意。favicon.icoなどの非圧縮ファイルを格納するstaticフォルダを指定するとルートディレクトリ上に保存されるので便利。"
+  },
+  "functions": {
+    "functions": {
+      "source": "functions"
+    }
+  }
+}

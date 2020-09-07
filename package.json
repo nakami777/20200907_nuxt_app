@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "nuxt build && npm run build:copy:ssr",
+    "build:copy:ssr": "rimraf functions/ssr && mkdirp functions/ssr && cp -R .nuxt/dist functions/ssr/dist",
+    "//": "ビルド時に.nuxt/distのファイル群が自動的にfunctions/ssr/distにコピーされる",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
@@ -19,5 +21,6 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^7.5.0",
     "eslint-plugin-nuxt": "^1.0.0"
-  }
+  },
+  "//": "axios、bootstrap-vueなどの外部モジュールを使用する場合は、こことfunctions直下２つのpackage.jsonに記述する必要があるので注意。"
 }
